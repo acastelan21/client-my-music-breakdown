@@ -2,21 +2,20 @@ import React, { Component } from 'react';
 import {Router, Route, Switch} from "react-router-dom";
 import history from "./history"
 import './App.scss';
-import LandingPage from "./pages/Landing";
+//import pages
+import LoginPage from "./pages/Login";
+import UserPage from "./pages/User";
 
 class App extends Component {
   render() {
     return (
-      // <div className="App">
-      //   <p>Spotify Web App</p>
-      //   <a href='http://localhost:8888'> Login to Spotify </a>
-        
-      // </div>
       <React.Fragment>
         <Router history={history}>
           <React.Fragment>
             <Switch>
-              <Route path="/" component={LandingPage}/>
+              <Route exact path="/" component={LoginPage}/>
+              <Route path="/user/" component={UserPage}/>
+
             </Switch>
           </React.Fragment>
         </Router>
