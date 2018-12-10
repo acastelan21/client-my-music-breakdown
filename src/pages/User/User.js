@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import SpotifyWebApi from "spotify-web-api-js";
-
+import NavBar from "../../components/NavBar";
 const spotify = new SpotifyWebApi();
 
 class User extends Component {
@@ -66,8 +66,11 @@ class User extends Component {
         console.log("image",this.state.imageUrl)
         return (
             <div className="user-page-logged-in">
-              <p>Hello {this.state.data.display_name}! </p>
-              <img src={this.state.imageUrl} alt="profile pic"/>
+            <NavBar
+            userImage = {this.state.imageUrl}
+            userName = {this.state.data.display_name}
+            />
+              
             </div>
           )
 
