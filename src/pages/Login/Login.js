@@ -4,8 +4,8 @@ class LogIn extends Component {
   render() {
     return (
       <div className="log-in">
-      <p>Hello World</p>
-        
+      <button>Login</button>
+      
       </div>
     )
   }

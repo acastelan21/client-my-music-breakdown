@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Router, Route, Switch} from "react-router-dom";
 import history from "./history"
-import Login from "./pages/Login";
 import './App.scss';
+import LandingPage from "./pages/Landing";
 
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
         <Router history={history}>
           <React.Fragment>
             <Switch>
-              <Route exact path="/login" component={Login}/>
+              <Route path="/" component={LandingPage}/>
             </Switch>
           </React.Fragment>
         </Router>
