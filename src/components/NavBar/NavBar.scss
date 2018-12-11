@@ -2,7 +2,9 @@
 
 .navbar {
     height: 5.3em;
-    background-color: $spotify-green;
+    background-color: $spotify-black;
+    border-bottom: .5em solid $spotify-green;
+    color: $spotify-green;
     
     img {
         
