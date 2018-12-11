@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-
+import "./User.scss";
 import SpotifyWebApi from "spotify-web-api-js";
 import NavBar from "../../components/NavBar";
 import TracksTable from "../../components/TracksTable";
+import Stats from "../../components/Stats";
 const spotify = new SpotifyWebApi();
 
 class User extends Component {
@@ -35,7 +36,6 @@ class User extends Component {
          
           
       }
-      
       getUser (){
           spotify.getMe()
           .then(response => {
@@ -52,8 +52,7 @@ class User extends Component {
           
       }
       getUserTopTracks() {
-          spotify.getMyTopTracks({"limit":50, "offset":0, "time_range":"long_term"})
-          
+          spotify.getMyTopTracks({"limit":50, "offset":0, "time_range":"short_term"})
           .then((response)=>{
               this.setState({
                   topTracks: response})
@@ -97,6 +96,8 @@ class User extends Component {
         }
         
       }
+      
+      
     
 
       getHashParams() {
@@ -108,17 +109,31 @@ class User extends Component {
         }
         return hashParams;
       }
-
+      
   render() {
+    
+        let totalEnergy = 0;
+        let totalDance = 0;
+        let totalValence= 0;
+        let totalAcoustic=0;
+        
+        for (let i=0; i<this.state.topTracksAttributes.length; i ++){
+           totalEnergy += (this.state.topTracksAttributes[i].energy * 100);
+           totalDance += (this.state.topTracksAttributes[i].danceability * 100);
+           totalValence += (this.state.topTracksAttributes[i].valence * 100);
+           totalAcoustic += (this.state.topTracksAttributes[i].acousticness * 100);
+        }
+        console.log("totalenergy",totalEnergy)
+    
       const tableRows = this.state.topTracksAttributes.map((tracks,i)=>(
-          <tr key={tracks.id}>
+          <tr key={`${tracks.id}${i}`}>
               <th>{i+ 1}</th>
               <th>{this.state.topTracks.items[i].name}</th>
               <th>{this.state.topTracks.items[i].artists[0].name}</th>
               <th>{(tracks.energy * 100).toFixed(0)}</th>
               <th>{(tracks.danceability * 100).toFixed(0)}</th>
               <th>{(tracks.valence * 100).toFixed(0)}</th>
-              <th>{(tracks.acousticness + 100).toFixed(0)}</th>
+              <th>{(tracks.acousticness * 100).toFixed(0)}</th>
               <th>{this.state.topTracks.items[i].popularity}</th>
           </tr>
       ))
@@ -139,9 +154,17 @@ class User extends Component {
             userImage = {this.state.imageUrl}
             userName = {this.state.userData.display_name}
             />
+            <Stats
+            averageEnergy={(totalEnergy/50).toFixed(0)}
+            averageDance={(totalDance/50).toFixed(0)}
+            averageValence={(totalValence/50).toFixed(0)}
+            averageAcoustic={(totalAcoustic/50).toFixed(0)}
+            
+            />
             <TracksTable
             tracks = {tableRows}
             />
+
               
             </div>
           )

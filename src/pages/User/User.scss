@@ -1,0 +1,9 @@
+@import "../../variables.scss";
+
+.user-page-logged-in{
+
+    .tracks-table{
+        @include centering(95%);
+        margin-top: 5em;
+    }
+}

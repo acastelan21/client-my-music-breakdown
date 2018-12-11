@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+import "./TracksTable.scss";
 import {Table} from "reactstrap";
+
 const TracksTable = (props) => {
   return (
     <div className="tracks-table">
-    <Table hover>
+    <Table bordered hover >
         <thead>
             <tr>
                 <th>#</th>

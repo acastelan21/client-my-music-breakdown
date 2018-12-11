@@ -1,0 +1,8 @@
+@import "../../variables.scss";
+
+.tracks-table {
+    tr:hover{
+        background-color: $spotify-green !important;
+        color: $spotify-white !important;
+    }
+}

@@ -5,3 +5,9 @@ $spotify-white : #FFFFFF;
 $background-gray: #f8f8f8;
 
 //mixins
+@mixin centering ($width){
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: $width;
+}
