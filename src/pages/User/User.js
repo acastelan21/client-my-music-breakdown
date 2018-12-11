@@ -11,7 +11,7 @@ class User extends Component {
         super(props);
         const params = this.getHashParams();
         const token = params.access_token;
-        console.log("token", token)
+        // console.log("token", token)
         this.state ={
           loggedIn: token ? true : false,
           tokens: params,
@@ -19,7 +19,8 @@ class User extends Component {
           dataLoaded: false,
           imageUrl: "",
           topTracks: [],
-          topTracksAttributes: []
+          topTracksAttributes: [],
+          combineTrackInfo: []
           
           
         }
@@ -36,6 +37,7 @@ class User extends Component {
          
           
       }
+      // make api call to get the user name + user image
       getUser (){
           spotify.getMe()
           .then(response => {
@@ -44,6 +46,7 @@ class User extends Component {
                   imageUrl: response.images[0].url,
                   dataLoaded: true
               })
+              console.log("update state 1")
               
           })
           .catch(error => {
@@ -51,12 +54,14 @@ class User extends Component {
           })
           
       }
+      // make api call to ge the users top songs
       getUserTopTracks() {
           spotify.getMyTopTracks({"limit":50, "offset":0, "time_range":"short_term"})
           .then((response)=>{
               this.setState({
-                  topTracks: response})
-                console.log("toptracks", response)
+                  topTracks: response.items})
+                // console.log("toptracks", response)
+                console.log("update state 2")
           })
           .then(()=>{
             this.getTopTracksIds();
@@ -66,38 +71,46 @@ class User extends Component {
               console.log(error)
           })
       }
-
+      // get the top track ids to make a call to API to get song attributes
       getTopTracksIds() {
-          var tracks = this.state.topTracks.items
+          var tracks = this.state.topTracks
           const topTracksIds = tracks.map((track)=> {
             return track.id
           })
-        console.log(topTracksIds.toString())
+        // console.log(topTracksIds.toString())
          spotify.getAudioFeaturesForTracks(topTracksIds).then((response)=>{
              this.setState({
                  topTracksAttributes: response.audio_features
              })
-             console.log(this.state.topTracksAttributes)
+            //  console.log(this.state.topTracksAttributes)
+            console.log("update state 3")
          }).then(()=>{
-            this.getSongName()
+             this.combineTrackInfo()
          })
-
-
-      }
-      getSongName(){
-        console.log(this.state.topTracks.items[0].id)
-        console.log(this.state.topTracksAttributes[0].id)
-        for (let i = 0; i < this.state.topTracks.items.length; i ++){
-            for (let j = 0 ; j < this.state.topTracksAttributes.length; j++){
-                if (this.state.topTracks.items[i].id === this.state.topTracksAttributes[j].id){
-                    console.log(this.state.topTracks.items[i].name)
-                }
-            }
-        }
         
+
+
       }
-      
-      
+    // function to combine data into state variable to load table to make sort easier
+      combineTrackInfo(){
+          let trackNames = this.state.topTracks
+          let trackAttributes = this.state.topTracksAttributes
+
+          for (let i=0; i < trackNames.length; i++){
+              
+              for (let j=0; j<trackAttributes.length; j++){
+                  if (trackNames[i].id === trackAttributes[j].id){
+                      trackNames[i].song_attributes = trackAttributes[j]
+                  }
+              }
+          }
+
+         this.setState({
+             combineTrackInfo : trackNames
+         })
+         console.log("update state 4")
+         console.log(this.state)
+      }
     
 
       getHashParams() {
@@ -111,34 +124,36 @@ class User extends Component {
       }
       
   render() {
-    
+        let totalTempo = 0;
         let totalEnergy = 0;
         let totalDance = 0;
         let totalValence= 0;
         let totalAcoustic=0;
         
         for (let i=0; i<this.state.topTracksAttributes.length; i ++){
+           totalTempo += (this.state.topTracksAttributes[i].tempo);
            totalEnergy += (this.state.topTracksAttributes[i].energy * 100);
            totalDance += (this.state.topTracksAttributes[i].danceability * 100);
            totalValence += (this.state.topTracksAttributes[i].valence * 100);
            totalAcoustic += (this.state.topTracksAttributes[i].acousticness * 100);
         }
-        console.log("totalenergy",totalEnergy)
+        // console.log("totalenergy",totalEnergy)
     
-      const tableRows = this.state.topTracksAttributes.map((tracks,i)=>(
-          <tr key={`${tracks.id}${i}`}>
+      const tableRows = this.state.combineTrackInfo.map((tracks,i)=>(
+          <tr key={tracks.id}>
               <th>{i+ 1}</th>
-              <th>{this.state.topTracks.items[i].name}</th>
-              <th>{this.state.topTracks.items[i].artists[0].name}</th>
-              <th>{(tracks.energy * 100).toFixed(0)}</th>
-              <th>{(tracks.danceability * 100).toFixed(0)}</th>
-              <th>{(tracks.valence * 100).toFixed(0)}</th>
-              <th>{(tracks.acousticness * 100).toFixed(0)}</th>
-              <th>{this.state.topTracks.items[i].popularity}</th>
+              <th>{tracks.name}</th>
+              <th>{tracks.artists[0].name}</th>
+              <th>{(tracks.song_attributes.tempo).toFixed(0)}</th>
+              <th>{(tracks.song_attributes.energy * 100).toFixed(0)}</th>
+              <th>{(tracks.song_attributes.danceability * 100).toFixed(0)}</th>
+              <th>{(tracks.song_attributes.valence * 100).toFixed(0)}</th>
+              <th>{(tracks.song_attributes.acousticness * 100).toFixed(0)}</th>
+              <th> {(tracks.popularity)}</th>
           </tr>
       ))
       
-      console.log(this.state)
+    //   console.log(this.state)
     if (this.state.loggedIn === false){
         return (
             <div className="user-page-logged-off">
@@ -147,7 +162,7 @@ class User extends Component {
         )
     }
     else if (this.state.loggedIn === true){
-        console.log("image",this.state.imageUrl)
+        // console.log("image",this.state.imageUrl)
         return (
             <div className="user-page-logged-in">
             <NavBar
@@ -155,6 +170,7 @@ class User extends Component {
             userName = {this.state.userData.display_name}
             />
             <Stats
+            averageTempo={(totalTempo/50).toFixed(0)}
             averageEnergy={(totalEnergy/50).toFixed(0)}
             averageDance={(totalDance/50).toFixed(0)}
             averageValence={(totalValence/50).toFixed(0)}

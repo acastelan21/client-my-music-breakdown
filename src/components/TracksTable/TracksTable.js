@@ -11,6 +11,7 @@ const TracksTable = (props) => {
                 <th>#</th>
                 <th>Title</th>
                 <th>Artist</th>
+                <th>Tempo</th>
                 <th>Energy</th>
                 <th>Dance</th>
                 <th>Valence</th>
