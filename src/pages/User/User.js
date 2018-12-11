@@ -4,6 +4,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import NavBar from "../../components/NavBar";
 import TracksTable from "../../components/TracksTable";
 import Stats from "../../components/Stats";
+import MySong from "../../components/MySong";
 const spotify = new SpotifyWebApi();
 
 class User extends Component {
@@ -20,7 +21,8 @@ class User extends Component {
           imageUrl: "",
           topTracks: [],
           topTracksAttributes: [],
-          combineTrackInfo: []
+          combineTrackInfo: [],
+          view: "long_term",
           
           
         }
@@ -32,7 +34,7 @@ class User extends Component {
       }
       componentDidMount(){
           this.getUser();
-          this.getUserTopTracks();
+          this.getUserTopTracks(this.state.view);
           
          
           
@@ -55,8 +57,8 @@ class User extends Component {
           
       }
       // make api call to ge the users top songs
-      getUserTopTracks() {
-          spotify.getMyTopTracks({"limit":50, "offset":0, "time_range":"short_term"})
+      getUserTopTracks(term) {
+          spotify.getMyTopTracks({"limit":50, "offset":0, "time_range":term})
           .then((response)=>{
               this.setState({
                   topTracks: response.items})
@@ -165,23 +167,34 @@ class User extends Component {
         // console.log("image",this.state.imageUrl)
         return (
             <div className="user-page-logged-in">
+            
             <NavBar
             userImage = {this.state.imageUrl}
             userName = {this.state.userData.display_name}
             />
-            <Stats
-            averageTempo={(totalTempo/50).toFixed(0)}
-            averageEnergy={(totalEnergy/50).toFixed(0)}
-            averageDance={(totalDance/50).toFixed(0)}
-            averageValence={(totalValence/50).toFixed(0)}
-            averageAcoustic={(totalAcoustic/50).toFixed(0)}
+            <div className="grid">
+                <div className="item stats-item">
+                <Stats
+                    averageTempo={(totalTempo/50).toFixed(0)}
+                    averageEnergy={(totalEnergy/50).toFixed(0)}
+                    averageDance={(totalDance/50).toFixed(0)}
+                    averageValence={(totalValence/50).toFixed(0)}
+                    averageAcoustic={(totalAcoustic/50).toFixed(0)}
+                    
+                    />
+                </div>
+                <div className="item my-song-item">
+                <MySong
+                    title={"Lovely"}
+
+                />
+                </div>
+            </div>
             
-            />
             <TracksTable
             tracks = {tableRows}
             />
 
-              
             </div>
           )
     }

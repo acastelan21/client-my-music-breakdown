@@ -1,9 +1,25 @@
 @import "../../variables.scss";
 
 .user-page-logged-in{
+    .grid {
+        display: grid;
+        grid-template-rows: 
+          repeat(1, 20em);
+        grid-template-columns: 
+          repeat(2, 1fr);
+        grid-column-gap: 10px;
+        width: 95%;
+        margin-right: auto;
+        margin-left:  auto;
+        margin-top: 2.5em;
 
+      }
+      .item {
+          border: 2px solid $spotify-black ;
+          
+      }
     .tracks-table{
         @include centering(95%);
-        margin-top: 5em;
+        margin-top: 2.5em;
     }
 }
