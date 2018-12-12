@@ -135,8 +135,7 @@ class User extends Component {
         let points = 0;
         let leadSongPoints= 0;
         let leadSong= [];
-        let leadArtist="";
-        let leadCover="";
+        
 
         // console.log( Math.abs(attributesAverages[0].acousticness - this.state.combineTrackInfo[0].song_attributes.acousticness))
         // console.log(attributesAverages[0].acousticness)
@@ -160,14 +159,12 @@ class User extends Component {
            if (j === 0){
                leadSongPoints = points;
                leadSong = this.state.combineTrackInfo[0]
-               leadArtist = this.state.combineTrackInfo[0].artists[0].name
-               leadCover = this.state.combineTrackInfo[0].album.images[1].url
+               
            }
            if (points < leadSongPoints ){
                 leadSongPoints = points;
                 leadSong =this.state.combineTrackInfo[j]
-                leadArtist = this.state.combineTrackInfo[j].artists[0].name
-               leadCover = this.state.combineTrackInfo[j].album.images[1].url
+                
                
            }
            
@@ -274,24 +271,26 @@ class User extends Component {
                 <hr/>
                 <p>Tempo: {idealSongData[0].song_attributes.tempo.toFixed(0)}</p>
                 <p>Energy: {(idealSongData[0].song_attributes.energy * 100).toFixed(0)} </p>
-                <p>Danceability:{(idealSongData[0].song_attributes.danceability * 100).toFixed(0)}</p>
-                <p>Valence:{(idealSongData[0].song_attributes.valence * 100).toFixed(0)}</p>
-                <p>Acousticness:{(idealSongData[0].song_attributes.acousticness *100).toFixed(0)}</p>
+                <p>Danceability: {(idealSongData[0].song_attributes.danceability * 100).toFixed(0)}</p>
+                <p>Valence: {(idealSongData[0].song_attributes.valence * 100).toFixed(0)}</p>
+                <p>Acousticness: {(idealSongData[0].song_attributes.acousticness *100).toFixed(0)}</p>
             </div>
             </React.Fragment>
+            
                 : 
                 <React.Fragment>
-                <MySong/>
+                <div className="flip-card-frontxs">
+                    <div id="preloader">
+                        <div id="loader"></div>
+                    </div>
+                </div>
+                
                 <div className="flip-card-back">
                 
-                <header>My Ideal Song</header>
-                <hr/>
-                <p>Tempo:</p>
-                <p>Energy:</p>
-                <p>Danceability:</p>
-                <p>Valence:</p>
-                <p>Acousticness:</p>
-            </div>
+                    <div id="preloader">
+                        <div id="loader"></div>
+                    </div>
+                </div>
             </React.Fragment>
                 }
                 
