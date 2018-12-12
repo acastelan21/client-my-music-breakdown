@@ -15,11 +15,35 @@
 
       }
       .item {
-          border: 2px solid $spotify-black ;
+          border: 2px solid $spotify-black;
           
       }
     .tracks-table{
         @include centering(95%);
         margin-top: 2.5em;
+    }
+    .stats-item{
+        header,p{
+
+            text-align: center;
+        }
+        header {
+            margin-top: 1em;
+        }
+    }
+    .my-song-item{
+        p,header{
+            text-align: center;
+        }
+        header {
+            margin-top: 1em;
+        }
+        img {
+            display: block;
+            width: 10em;;
+            height: 10em;
+            margin-right: auto;
+            margin-left: auto;
+        }
     }
 }
