@@ -2,7 +2,7 @@ import React from 'react'
 
 const MySong = (props) => {
   return (
-    <div className="my-song">
+    <div className="my-song flip-card-front">
         <header>My Ideal Song</header>
             <hr/>
             <p>{props.title}</p>
