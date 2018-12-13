@@ -5,7 +5,11 @@ import NavBar from "../../components/NavBar";
 import TracksTable from "../../components/TracksTable";
 import Stats from "../../components/Stats";
 import MySong from "../../components/MySong";
+
+
+
 const spotify = new SpotifyWebApi();
+
 
 class User extends Component {
     constructor(props){
@@ -21,7 +25,7 @@ class User extends Component {
           topTracks: [],
           topTracksAttributes: [],
           combineTrackInfo: [],
-          view: "long_term",
+          view: "short_term",
           idealSong: [],
           direction: {
               name : "",
@@ -40,6 +44,8 @@ class User extends Component {
         }
         this.sortByInt = this.sortByInt.bind(this)
         this.sortByAlpha = this.sortByAlpha.bind(this)
+        this.changeView = this.changeView.bind(this)
+        
 
         if (token) {
             spotify.setAccessToken(token);
@@ -126,8 +132,9 @@ class User extends Component {
              combineTrackInfo : trackNames
          })
          console.log("update state 4")
-         console.log(this.state)
+        //  console.log(this.state)
          this.getIdealSong();
+         console.log(this.state)
       }
     //get the song that matches up closests to averages
       getIdealSong(){
@@ -194,7 +201,7 @@ class User extends Component {
         this.setState({
             idealSong: [leadSong]
         })
-        console.log(this.state)
+        // console.log(this.state)
         
       }
       sortByAlpha(key){
@@ -246,8 +253,7 @@ class User extends Component {
 
       }
       sortByInt(key){
-          console.log(this.state.direction[key])
-          console.log(key)
+        
         let tracks = this.state.combineTrackInfo
 
         tracks.sort((a,b)=>{
@@ -273,11 +279,27 @@ class User extends Component {
             : "asc"
             },
         })
-        console.log(value)
-        console.log([key])
-        console.log([key][0])
-        console.log(this.state)
         
+        
+      }
+      // change view function
+      changeView = (event) => {
+          event.preventDefault(); 
+          console.log("pressed")
+          console.log(event.target.id)
+          this.getUserTopTracks(event.target.id)
+          this.setState({
+              view : event.target.id
+          })
+          
+          console.log(this.state)
+          if(event.target.id !== this.state.view){
+             document.getElementById("short_term").style.background= "white"
+             document.getElementById("medium_term").style.background="white"
+             document.getElementById("long_term").style.background="white"
+          }
+          event.target.style.background = "#1DB954"
+          
       }
 
       getHashParams() {
@@ -331,7 +353,7 @@ class User extends Component {
     else if (this.state.loggedIn === true){
         // console.log("image",this.state.imageUrl)
         const idealSongData = this.state.idealSong || []
-        console.log("song length", this.state.idealSong.length)
+        // console.log("song length", this.state.idealSong.length)
         return (
             <div className="user-page-logged-in">
             
@@ -339,6 +361,20 @@ class User extends Component {
             userImage = {this.state.imageUrl}
             userName = {this.state.userData.display_name}
             />
+
+            <header>
+                <div className="views-container">
+                    <h4>THE BREAKDOWN</h4>
+                    <ul id="views-toggles">
+                    <li id="view-text">View: </li>
+                    <li id="short_term" onClick={this.changeView}>Last 4 weeks</li>
+                    <li id="medium_term"onClick={this.changeView}>Last 6 months</li>
+                    <li id="long_term" onClick={this.changeView}>All time</li>
+                    <li id="glossary" onClick={this.changeView}>Glossary</li>
+                    </ul>
+                </div>
+            </header>
+
             <div className="grid">
                 <div className="item stats-item">
                 <Stats
