@@ -9,14 +9,14 @@ const TracksTable = (props) => {
         <thead>
             <tr>
                 <th>#</th>
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Tempo</th>
-                <th>Energy</th>
-                <th>Dance</th>
-                <th>Valence</th>
-                <th>Acoustic</th>
-                <th>Pop.</th>
+                <th onClick={()=>props.sortByAlpha("name")}>Title</th>
+                <th onClick={()=>props.sortByAlpha("artist")}>Artist</th>
+                <th onClick={()=>props.sortByInt("tempo")}>Tempo</th>
+                <th onClick={()=>props.sortByInt("energy")}>Energy</th>
+                <th onClick={()=>props.sortByInt("danceability")}>Dance</th>
+                <th onClick={()=>props.sortByInt("valence")}>Valence</th>
+                <th onClick={()=>props.sortByInt("acousticness")}>Acoustic</th>
+                <th onClick={()=>props.sortByInt("popularity")}>Pop.</th>
 
 
             </tr>

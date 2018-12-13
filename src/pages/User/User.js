@@ -23,10 +23,16 @@ class User extends Component {
           topTracksAttributes: [],
           combineTrackInfo: [],
           view: "medium_term",
-          idealSong: []
+          idealSong: [],
+          direction: {
+              name: "",
+              artist: ""
+          }
+          
           
           
         }
+        this.sortByAlpha=this.sortByAlpha.bind(this)
         if (token) {
             spotify.setAccessToken(token);
         }
@@ -115,7 +121,7 @@ class User extends Component {
          console.log(this.state)
          this.getIdealSong();
       }
-    
+    //get the song that matches up closests to averages
       getIdealSong(){
         let totalTempo = 0;
         let totalEnergy = 0;
@@ -183,7 +189,44 @@ class User extends Component {
         console.log(this.state)
         
       }
+      sortByAlpha(key){
+          let tracks = this.state.combineTrackInfo
+        
+        
+        tracks.sort((a,b)=>{
+            let nameA;
+            let nameB;
+            if (key === "name"){
+                nameA = a.name.toUpperCase()
+                nameB = b.name.toUpperCase()
+            }
+            if (key === "artist"){
+                nameA = a.artists[0].name.toUpperCase()
+                nameB = b.artists[0].name.toUpperCase()
+            }
+            
+            
+            if (nameA < nameB){
+                return -1
+            }
+            if (nameA > nameB){
+                return 1
+            }
+            return 0;
+        })
+        this.setState({
+            combineTrackInfo: tracks,
+            direction : {
+                [key] : this.state.direction[key] === "asc"
+                ? "desc"
+                : "asc"
+            }
+        })
 
+      }
+      sortByInt(key){
+
+      }
 
       getHashParams() {
         let hashParams = {};
@@ -302,6 +345,8 @@ class User extends Component {
             </div>
             
             <TracksTable
+            sortByAlpha = {this.sortByAlpha}
+            sortByInt ={this.sortByInt}
             tracks = {tableRows}
             />
 
