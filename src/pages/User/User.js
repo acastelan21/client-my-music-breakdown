@@ -12,7 +12,6 @@ class User extends Component {
         super(props);
         const params = this.getHashParams();
         const token = params.access_token;
-        // console.log("token", token)
         this.state ={
           loggedIn: token ? true : false,
           tokens: params,
@@ -22,17 +21,26 @@ class User extends Component {
           topTracks: [],
           topTracksAttributes: [],
           combineTrackInfo: [],
-          view: "medium_term",
+          view: "long_term",
           idealSong: [],
           direction: {
-              name: "",
-              artist: ""
+              name : "",
+              artist : "",
+              tempo : "",
+              energy:"",
+              danceability: "",
+              valence: "",
+              acousticness: "",
+              popularity: ""
+
           }
           
           
           
         }
-        this.sortByAlpha=this.sortByAlpha.bind(this)
+        this.sortByInt = this.sortByInt.bind(this)
+        this.sortByAlpha = this.sortByAlpha.bind(this)
+
         if (token) {
             spotify.setAccessToken(token);
         }
@@ -205,19 +213,32 @@ class User extends Component {
                 nameB = b.artists[0].name.toUpperCase()
             }
             
+            if (this.state.direction[key] === "asc"){
+                if (nameA > nameB){
+                    return -1
+                }
+                if (nameA < nameB){
+                    return 1
+                }
+                return 0;
+            }
+            else {
+                if (nameA < nameB){
+                    return -1
+                }
+                if (nameA > nameB){
+                    return 1
+                }
+                return 0;
+            }
             
-            if (nameA < nameB){
-                return -1
-            }
-            if (nameA > nameB){
-                return 1
-            }
-            return 0;
+            
         })
+        let value = [key][0]
         this.setState({
             combineTrackInfo: tracks,
             direction : {
-                [key] : this.state.direction[key] === "asc"
+                [value] : this.state.direction[key] === "asc"
                 ? "desc"
                 : "asc"
             }
@@ -225,7 +246,38 @@ class User extends Component {
 
       }
       sortByInt(key){
+          console.log(this.state.direction[key])
+          console.log(key)
+        let tracks = this.state.combineTrackInfo
 
+        tracks.sort((a,b)=>{
+            
+            let attributeA = a.song_attributes[key];
+            let attributeB = b.song_attributes[key];
+            
+            if (this.state.direction[key] === "asc"){
+              return attributeA - attributeB
+            }
+            else {
+                return attributeB - attributeA
+            }
+
+            
+        })
+        let value = [key][0]
+        this.setState({
+            combineTrackInfo: tracks,
+            direction: {
+            [value] : this.state.direction[key] === "asc"
+            ? "desc"
+            : "asc"
+            },
+        })
+        console.log(value)
+        console.log([key])
+        console.log([key][0])
+        console.log(this.state)
+        
       }
 
       getHashParams() {
