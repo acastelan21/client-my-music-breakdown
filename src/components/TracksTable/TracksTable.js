@@ -16,7 +16,7 @@ const TracksTable = (props) => {
                 <th onClick={()=>props.sortByInt("danceability")}>Dance</th>
                 <th onClick={()=>props.sortByInt("valence")}>Valence</th>
                 <th onClick={()=>props.sortByInt("acousticness")}>Acoustic</th>
-                <th onClick={()=>props.sortByInt("popularity")}>Pop.</th>
+                <th onClick={()=>props.sortByInt("popularity")}>Popularity</th>
 
 
             </tr>

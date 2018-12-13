@@ -5,6 +5,7 @@ import './App.scss';
 //import pages
 import LoginPage from "./pages/Login";
 import UserPage from "./pages/User";
+import Footer from "./components/Footer";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
               <Route path="/user/" component={UserPage}/>
 
             </Switch>
+            <Footer/>
           </React.Fragment>
         </Router>
       </React.Fragment>

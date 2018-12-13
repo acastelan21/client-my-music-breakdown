@@ -159,13 +159,20 @@
 
  //views header
  .views-container{
+
      header {
-         width: 100%
+         width: 100%;
+         
      }
       h2 {
         padding-left: .5rem;
         margin: .5rem 2.5rem
     }
+     h4{
+        margin-top: .5em;
+        margin-bottom:.5em;
+        margin-left: 1.9em;
+     }
      ul li{
         display: inline-block;
         position: relative;

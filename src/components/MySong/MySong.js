@@ -3,7 +3,7 @@ import React from 'react'
 const MySong = (props) => {
   return (
     <div className="my-song flip-card-front">
-        <header>My Ideal Song</header>
+        <header>My Typical Song</header>
             <hr/>
             <p>{props.title}</p>
             <p>{props.artist}</p>

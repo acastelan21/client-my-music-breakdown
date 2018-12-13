@@ -1,0 +1,15 @@
+@import "../../variables.scss";
+
+.footer {
+    text-align: center;
+    a {
+        color: $spotify-green;
+       &:hover {
+           color: $spotify-green;
+           opacity: .6;
+           text-decoration: none;
+       } 
+    }
+
+
+}
