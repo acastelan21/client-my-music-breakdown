@@ -5,7 +5,9 @@
     background-color: $spotify-black;
     border-bottom: .5em solid $spotify-green;
     color: $spotify-green;
-    
+    .navbar-brand {
+        font-size: 2em;
+    }
     img {
         
         border-radius: 50%;

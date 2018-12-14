@@ -1,0 +1,58 @@
+@import "../../variables.scss";
+
+.login-page{
+    
+    .parallax {
+        background-image: url("https://images.unsplash.com/photo-1509335919466-c196457ea95a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+        height: 500px;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+       
+    }
+    .jumbotron {
+        background: rgba(50,50,50, 0.4);
+        text-align: center;
+        color: $spotify-white;
+        @include centering (90%);
+       position: absolute;
+       top: 10em;
+       left: 0;
+       right: 0;
+       border-radius: 1em !important;
+       
+
+       .display-3{
+           font-weight: 900;
+
+       }
+       button {
+        font-size: 1.5em;
+        line-height: 1.2;
+        border-radius: 500px;
+        padding: 18px 56px 14px;
+        background-color: $spotify-green;
+        opacity: .8;
+        font-weight: 900;
+    
+        &:hover{
+            opacity: 1;
+        }
+       }
+       
+    }
+    h2 {
+        margin-top: .5em;
+        text-align: center;
+    }
+    .row {
+        margin-top: 1em;
+    }
+    
+    
+}
+.footer {
+    margin-top: 1.5em;
+}

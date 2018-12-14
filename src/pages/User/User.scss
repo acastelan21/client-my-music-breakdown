@@ -168,11 +168,11 @@
         padding-left: .5rem;
         margin: .5rem 2.5rem
     }
-     h4{
-        margin-top: .5em;
-        margin-bottom:.5em;
-        margin-left: 1.9em;
-     }
+    //  h4{
+    //     margin-top: .5em;
+    //     margin-bottom:.5em;
+    //     margin-left: 1.9em;
+    //  }
      ul li{
         display: inline-block;
         position: relative;
@@ -187,7 +187,7 @@
         cursor: pointer;
     }
     #views-toggles {
-        border-top: 5px solid $spotify-green;
+        // border-top: 5px solid $spotify-green;
         border-bottom: 5px solid $spotify-green;
         width: 100%;
         

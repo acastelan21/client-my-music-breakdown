@@ -6,9 +6,14 @@
             background-color: $spotify-green;
             color: $spotify-white;
         }
+        th:hover{
+            cursor: pointer;
+        }
+        
     }
     tr:hover{
         background-color: $spotify-green !important;
         color: $spotify-white !important;
     }
+    
 }

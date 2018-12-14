@@ -6,7 +6,7 @@ import TracksTable from "../../components/TracksTable";
 import Stats from "../../components/Stats";
 import MySong from "../../components/MySong";
 import Glossary from "../../components/Glossary";
-import Footer from "../../components/Footer";
+
 
 
 const spotify = new SpotifyWebApi();
@@ -26,7 +26,7 @@ class User extends Component {
           topTracks: [],
           topTracksAttributes: [],
           combineTrackInfo: [],
-          view: "short_term",
+          view: "long_term",
           idealSong: [],
           direction: {
               name : "",
@@ -295,10 +295,10 @@ class User extends Component {
           
           console.log(this.state)
           if(event.target.id !== this.state.view){
-             document.getElementById("short_term").style.background= "white"
-             document.getElementById("medium_term").style.background="white"
-             document.getElementById("long_term").style.background="white"
-             document.getElementById("glossary").style.background="white"
+             document.getElementById("short_term").style.background= "#f8f8f8"
+             document.getElementById("medium_term").style.background="#f8f8f8"
+             document.getElementById("long_term").style.background="#f8f8f8"
+             document.getElementById("glossary").style.background="#f8f8f8"
           }
           event.target.style.background = "#1DB954"
           
@@ -361,7 +361,7 @@ class User extends Component {
             />
             <header>
                 <div className="views-container">
-                    <h4>THE BREAKDOWN</h4>
+                    {/* <h4>THE BREAKDOWN</h4> */}
                     <ul id="views-toggles">
                     <li id="view-text">View: </li>
                     <li id="short_term" onClick={this.changeView}>Last 4 weeks</li>
@@ -389,7 +389,7 @@ class User extends Component {
 
             <header>
                 <div className="views-container">
-                    <h4>THE BREAKDOWN</h4>
+                    {/* <h4>THE BREAKDOWN</h4> */}
                     <ul id="views-toggles">
                     <li id="view-text">View: </li>
                     <li id="short_term" onClick={this.changeView}>Last 4 weeks</li>
