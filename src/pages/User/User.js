@@ -163,6 +163,7 @@ class User extends Component {
         let totalDance = 0;
         let totalValence= 0;
         let totalAcoustic=0;
+        let totalPopularity=0;
         
         for (let i=0; i<this.state.topTracksAttributes.length; i ++){
            totalTempo += (this.state.topTracksAttributes[i].tempo);
@@ -170,9 +171,10 @@ class User extends Component {
            totalDance += (this.state.topTracksAttributes[i].danceability*100 );
            totalValence += (this.state.topTracksAttributes[i].valence*100);
            totalAcoustic += (this.state.topTracksAttributes[i].acousticness*100);
+           totalPopularity +=(this.state.topTracks[i].popularity);
         }
 
-        let attributesAverages = [{"tempo":(totalTempo / 50),"energy":(totalEnergy / 50),"dance":(totalDance / 50),"valence":(totalValence / 50),"acousticness":(totalAcoustic / 50)}]
+        let attributesAverages = [{"tempo":(totalTempo / 50),"energy":(totalEnergy / 50),"dance":(totalDance / 50),"valence":(totalValence / 50),"acousticness":(totalAcoustic / 50),"popularity":(totalPopularity)}]
         let points = 0;
         let leadSongPoints= 0;
         let leadSong= [];
@@ -193,6 +195,8 @@ class User extends Component {
            points += Math.abs((this.state.combineTrackInfo[j].song_attributes.valence *100)- (attributesAverages[0].valence))
         //    console.log("valence",points)
            points += Math.abs((this.state.combineTrackInfo[j].song_attributes.acousticness*100) - (attributesAverages[0].acousticness))
+
+           points += Math.abs((this.state.combineTrackInfo[j].popularity)-(attributesAverages[0].popularity))
         //    console.log("acoustic",points)
         //    console.log("this song", this.state.combineTrackInfo[j].name)
         //    console.log("points this song",points)
@@ -368,7 +372,7 @@ class User extends Component {
         let totalDance = 0;
         let totalValence= 0;
         let totalAcoustic=0;
-        
+        let totalPopularity = 0;
         
         for (let i=0; i<this.state.topTracksAttributes.length; i ++){
            totalTempo += (this.state.topTracksAttributes[i].tempo);
@@ -376,12 +380,14 @@ class User extends Component {
            totalDance += (this.state.topTracksAttributes[i].danceability * 100);
            totalValence += (this.state.topTracksAttributes[i].valence * 100);
            totalAcoustic += (this.state.topTracksAttributes[i].acousticness * 100);
+           totalPopularity +=(this.state.topTracks[i].popularity)
         }
         const tempoAverage = ((totalTempo/50).toFixed(0))
         const energyAverage = ((totalEnergy/50).toFixed(0))
         const danceAverage =((totalDance/50).toFixed(0))
         const valenceAverage =((totalValence/50).toFixed(0))
         const acousticAverage=(((totalAcoustic/50).toFixed(0)))
+        const popularityAverage=(((totalPopularity/50).toFixed()))
         
       const tableRows = this.state.combineTrackInfo.map((tracks,i)=>(
           <tr key={tracks.id}>
@@ -461,13 +467,14 @@ class User extends Component {
                     averageDance={danceAverage}
                     averageValence={valenceAverage}
                     averageAcoustic={acousticAverage}
-                
+                    averagePopularity={popularityAverage}
                     victoryData = {[
                         {x:0, y: parseInt(tempoAverage)},
                         {x:1, y: parseInt(energyAverage)},
                         {x:2, y: parseInt(danceAverage)},
                         {x:3, y: parseInt(valenceAverage)},
-                        {x:4, y: parseInt(acousticAverage)}
+                        {x:4, y: parseInt(acousticAverage)},
+                        {x:5, y: parseInt(popularityAverage)}
 
                     ]}
                     
@@ -492,6 +499,7 @@ class User extends Component {
                 <p>Danceability: {(idealSongData[0].song_attributes.danceability * 100).toFixed(0)}</p>
                 <p>Valence: {(idealSongData[0].song_attributes.valence * 100).toFixed(0)}</p>
                 <p>Acousticness: {(idealSongData[0].song_attributes.acousticness *100).toFixed(0)}</p>
+                <p>Popularity:{(idealSongData[0]. popularity)}</p>
             </div>
             </React.Fragment>
             

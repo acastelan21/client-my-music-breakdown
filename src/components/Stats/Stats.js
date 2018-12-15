@@ -12,6 +12,7 @@ const Stats = (props) => {
         <p>Average Danceability: {props.averageDance}</p>
         <p>Average Valence: {props.averageValence}</p>
         <p>Average Acoustic: {props.averageAcoustic}</p>
+        <p>Average Popularity: {props.averagePopularity}</p>
       </div>
       </div>
       
@@ -26,7 +27,7 @@ const Stats = (props) => {
         endAngle={450}
         >
           <VictoryArea data={props.victoryData}/>
-          {["Tempo","Energy", "Danceability", "Valence", "Acousticness"].map((d, i)=>{
+          {["Tempo","Energy", "Danceability", "Valence", "Acousticness", "Popularity"].map((d, i)=>{
             return (
               <VictoryPolarAxis dependentAxis
               key={i}
