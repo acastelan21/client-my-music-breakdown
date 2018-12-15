@@ -25,14 +25,8 @@ const Stats = (props) => {
         startAngle={90}
         endAngle={450}
         >
-          <VictoryArea data={[
-            {x:0, y: 125},
-            {x:1, y: 63},
-            {x:2, y: 74},
-            {x:3, y: 47},
-            {x:4, y: 14}
-          ]}/>
-          {["Tempo","Energy", "Danceability", "Valence", "Energy"].map((d, i)=>{
+          <VictoryArea data={props.victoryData}/>
+          {["Tempo","Energy", "Danceability", "Valence", "Acousticness"].map((d, i)=>{
             return (
               <VictoryPolarAxis dependentAxis
               key={i}

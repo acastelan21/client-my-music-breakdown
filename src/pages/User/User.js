@@ -342,8 +342,12 @@ class User extends Component {
            totalValence += (this.state.topTracksAttributes[i].valence * 100);
            totalAcoustic += (this.state.topTracksAttributes[i].acousticness * 100);
         }
-        // console.log("totalenergy",totalEnergy)
-    
+        const tempoAverage = ((totalTempo/50).toFixed(0))
+        const energyAverage = ((totalEnergy/50).toFixed(0))
+        const danceAverage =((totalDance/50).toFixed(0))
+        const valenceAverage =((totalDance/50).toFixed(0))
+        const acousticAverage=(((totalAcoustic/50).toFixed(0)))
+        
       const tableRows = this.state.combineTrackInfo.map((tracks,i)=>(
           <tr key={tracks.id}>
               <th>{i+ 1}</th>
@@ -417,11 +421,20 @@ class User extends Component {
             <div className="grid">
                 <div className="item stats-item flip-card">
                 <Stats
-                    averageTempo={(totalTempo/50).toFixed(0)}
-                    averageEnergy={(totalEnergy/50).toFixed(0)}
-                    averageDance={(totalDance/50).toFixed(0)}
-                    averageValence={(totalValence/50).toFixed(0)}
-                    averageAcoustic={(totalAcoustic/50).toFixed(0)}
+                    averageTempo={tempoAverage}
+                    averageEnergy={energyAverage}
+                    averageDance={danceAverage}
+                    averageValence={valenceAverage}
+                    averageAcoustic={acousticAverage}
+                
+                    victoryData = {[
+                        {x:0, y: parseInt(tempoAverage)},
+                        {x:1, y: parseInt(energyAverage)},
+                        {x:2, y: parseInt(danceAverage)},
+                        {x:3, y: parseInt(valenceAverage)},
+                        {x:4, y: parseInt(acousticAverage)}
+
+                    ]}
                     
                     />
                 </div>
