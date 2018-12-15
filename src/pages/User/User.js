@@ -94,8 +94,12 @@ class User extends Component {
       }
       // make api call to ge the users top songs
       getUserTopTracks(term) {
+          
+          
+        
           spotify.getMyTopTracks({"limit":50, "offset":0, "time_range":term})
           .then((response)=>{
+              console.log("get top tracks")
               this.setState({
                   topTracks: response.items})
                 // console.log("toptracks", response)
@@ -108,6 +112,7 @@ class User extends Component {
           .catch((error)=>{
               console.log(error)
           })
+        
       }
       // get the top track ids to make a call to API to get song attributes
       getTopTracksIds() {
@@ -300,14 +305,10 @@ class User extends Component {
       // change view function
       changeView = (event) => {
           event.preventDefault(); 
-          console.log("pressed")
-          console.log(event.target.id)
-          this.getUserTopTracks(event.target.id)
           this.setState({
               view : event.target.id
           })
-          
-          console.log(this.state)
+
           if(event.target.id !== this.state.view){
              document.getElementById("short_term").style.background= "#f8f8f8"
              document.getElementById("medium_term").style.background="#f8f8f8"
@@ -315,6 +316,13 @@ class User extends Component {
              document.getElementById("glossary").style.background="#f8f8f8"
           }
           event.target.style.background = "#1DB954"
+          if (event.target.id === "glossary"){
+              return;
+          }
+          else {
+            this.getUserTopTracks(event.target.id)
+          }
+          
           
       }
 
@@ -345,7 +353,7 @@ class User extends Component {
         const tempoAverage = ((totalTempo/50).toFixed(0))
         const energyAverage = ((totalEnergy/50).toFixed(0))
         const danceAverage =((totalDance/50).toFixed(0))
-        const valenceAverage =((totalDance/50).toFixed(0))
+        const valenceAverage =((totalValence/50).toFixed(0))
         const acousticAverage=(((totalAcoustic/50).toFixed(0)))
         
       const tableRows = this.state.combineTrackInfo.map((tracks,i)=>(
