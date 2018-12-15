@@ -375,7 +375,7 @@ class User extends Component {
             />
             <header>
                 <div className="views-container">
-                    {/* <h4>THE BREAKDOWN</h4> */}
+                    
                     <ul id="views-toggles">
                     <li id="view-text">View: </li>
                     <li id="short_term" onClick={this.changeView}>Last 4 weeks</li>
@@ -403,7 +403,7 @@ class User extends Component {
 
             <header>
                 <div className="views-container">
-                    {/* <h4>THE BREAKDOWN</h4> */}
+                    
                     <ul id="views-toggles">
                     <li id="view-text">View: </li>
                     <li id="short_term" onClick={this.changeView}>Last 4 weeks</li>
@@ -415,7 +415,7 @@ class User extends Component {
             </header>
 
             <div className="grid">
-                <div className="item stats-item">
+                <div className="item stats-item flip-card">
                 <Stats
                     averageTempo={(totalTempo/50).toFixed(0)}
                     averageEnergy={(totalEnergy/50).toFixed(0)}
@@ -437,7 +437,7 @@ class User extends Component {
                 />
                 <div className="flip-card-back">
                 
-                <header>My Ideal Song</header>
+                <header>My Typical Song</header>
                 <hr/>
                 <p>Tempo: {idealSongData[0].song_attributes.tempo.toFixed(0)}</p>
                 <p>Energy: {(idealSongData[0].song_attributes.energy * 100).toFixed(0)} </p>
@@ -449,7 +449,7 @@ class User extends Component {
             
                 : 
                 <React.Fragment>
-                <div className="flip-card-frontxs">
+                <div className="flip-card-front">
                     <div id="preloader">
                         <div id="loader"></div>
                     </div>

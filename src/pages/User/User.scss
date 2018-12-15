@@ -20,7 +20,7 @@
         margin-top: 2.5em;
     }
     .stats-item{
-        border: 2px solid $spotify-black;
+        // border: 2px solid $spotify-black;
         border-radius: 10%;
         header,p{
 
@@ -168,11 +168,7 @@
         padding-left: .5rem;
         margin: .5rem 2.5rem
     }
-    //  h4{
-    //     margin-top: .5em;
-    //     margin-bottom:.5em;
-    //     margin-left: 1.9em;
-    //  }
+   
      ul li{
         display: inline-block;
         position: relative;
@@ -200,5 +196,10 @@
         background: $spotify-green;
     }
 
+ }
+ // victory chart 
+ .VictoryContainer {
+     position: absolute !important;
+     top: 1.3em;
  }
 }
