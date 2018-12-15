@@ -7,7 +7,7 @@ import Stats from "../../components/Stats";
 import MySong from "../../components/MySong";
 import Glossary from "../../components/Glossary";
 
-
+import BlankProfileImage from "../../assets/images/blank-profile-image.png"
 
 const spotify = new SpotifyWebApi();
 
@@ -56,7 +56,9 @@ class User extends Component {
       }
       componentDidMount(){
           this.getUser();
+
           this.getUserTopTracks(this.state.view);
+        //   console.log(this.state)
           
          
           
@@ -65,13 +67,25 @@ class User extends Component {
       getUser (){
           spotify.getMe()
           .then(response => {
-              this.setState({
-                  userData: response,
-                  imageUrl: response.images[0].url,
-                  dataLoaded: true
-              })
-              console.log("update state 1")
-              
+              console.log(response)
+            if (response.images.length > 0){
+                this.setState({
+                    userData: response ,
+                    imageUrl: response.images[0].url,
+                    dataLoaded: true
+                })
+                console.log("update state 1")
+                console.log(this.state)
+            }
+              else {
+                this.setState({
+                    userData: response ,
+                    imageUrl: BlankProfileImage,
+                    dataLoaded: true
+                })
+                console.log("update state 1")
+                console.log(this.state)
+              }
           })
           .catch(error => {
               console.log(error)
@@ -135,7 +149,7 @@ class User extends Component {
          console.log("update state 4")
         //  console.log(this.state)
          this.getIdealSong();
-         console.log(this.state)
+        //  console.log(this.state)
       }
     //get the song that matches up closests to averages
       getIdealSong(){
@@ -376,15 +390,15 @@ class User extends Component {
             </div>
         )}
     else if (this.state.loggedIn === true){
-        // console.log("image",this.state.imageUrl)
+        // console.log(this.state.userData)
         const idealSongData = this.state.idealSong || []
         // console.log("song length", this.state.idealSong.length)
         return (
             <div className="user-page-logged-in">
             
             <NavBar
-            userImage = {this.state.imageUrl}
-            userName = {this.state.userData.display_name}
+            userImage = {this.state.imageUrl }
+            userName = {this.state.userData.display_name || this.state.userData.id}
             />
 
             <header>
