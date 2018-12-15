@@ -5,7 +5,7 @@ const NavBar = (props) => {
   return (
     <React.Fragment>
         <Navbar>
-            <NavbarBrand>My Music Breakdown</NavbarBrand>
+            <NavbarBrand href="/">My Music Breakdown</NavbarBrand>
             <p>Hello, {props.userName}</p>
             <img src={props.userImage} alt="user"/>
         </Navbar>

@@ -4,10 +4,17 @@
     height: 5.3em;
     background-color: $spotify-black;
     border-bottom: .5em solid $spotify-green;
-    color: $spotify-green;
+     color: $spotify-green;
     .navbar-brand {
         font-size: 2em;
+        color: inherit;
+        
+        &:hover {
+            text-decoration: none;
+           
+        }
     }
+    
     img {
         
         border-radius: 50%;

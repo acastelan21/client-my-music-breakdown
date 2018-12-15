@@ -67,7 +67,7 @@ class User extends Component {
       getUser (){
           spotify.getMe()
           .then(response => {
-              console.log(response)
+            //   console.log(response)
             if (response.images.length > 0){
                 this.setState({
                     userData: response ,
@@ -75,7 +75,7 @@ class User extends Component {
                     dataLoaded: true
                 })
                 console.log("update state 1")
-                console.log(this.state)
+                // console.log(this.state)
             }
               else {
                 this.setState({
@@ -84,7 +84,7 @@ class User extends Component {
                     dataLoaded: true
                 })
                 console.log("update state 1")
-                console.log(this.state)
+                // console.log(this.state)
               }
           })
           .catch(error => {
@@ -99,7 +99,7 @@ class User extends Component {
         
           spotify.getMyTopTracks({"limit":50, "offset":0, "time_range":term})
           .then((response)=>{
-              console.log("get top tracks")
+            //   console.log("get top tracks")
               this.setState({
                   topTracks: response.items})
                 // console.log("toptracks", response)
@@ -154,7 +154,7 @@ class User extends Component {
          console.log("update state 4")
         //  console.log(this.state)
          this.getIdealSong();
-        //  console.log(this.state)
+         console.log(this.state)
       }
     //get the song that matches up closests to averages
       getIdealSong(){
@@ -273,8 +273,34 @@ class User extends Component {
 
       }
       sortByInt(key){
-        
         let tracks = this.state.combineTrackInfo
+        if (key === "popularity"){
+            tracks.sort((a,b)=>{
+            
+                let attributeA = a[key];
+                let attributeB = b[key];
+                
+                if (this.state.direction[key] === "asc"){
+                  return attributeA - attributeB
+                }
+                else {
+                    return attributeB - attributeA
+                }
+    
+                
+            })
+            let value = [key][0]
+            this.setState({
+                combineTrackInfo: tracks,
+                direction: {
+                [value] : this.state.direction[key] === "asc"
+                ? "desc"
+                : "asc"
+                },
+            })
+        }
+        else {
+        
 
         tracks.sort((a,b)=>{
             
@@ -299,7 +325,7 @@ class User extends Component {
             : "asc"
             },
         })
-        
+    }
         
       }
       // change view function
@@ -342,6 +368,7 @@ class User extends Component {
         let totalDance = 0;
         let totalValence= 0;
         let totalAcoustic=0;
+        
         
         for (let i=0; i<this.state.topTracksAttributes.length; i ++){
            totalTempo += (this.state.topTracksAttributes[i].tempo);
