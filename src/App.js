@@ -6,8 +6,11 @@ import './App.scss';
 import LoginPage from "./pages/Login";
 import UserPage from "./pages/User";
 import Footer from "./components/Footer";
-
+import ReactGA from "react-ga";
+ReactGA.initialize("UA-123164500-2")
+ReactGA.pageview('/homepage');
 class App extends Component {
+  
   render() {
     return (
       <React.Fragment>
