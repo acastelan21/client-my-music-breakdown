@@ -24,7 +24,7 @@ class LogIn extends Component {
         <Jumbotron>
         <Container>
           <h1 className="display-3">My Music Breakdown</h1>
-          <p className="lead">Learn more about the music you listen to everyday based on musical attributes such as tempo, valence, energy,danceability, and popularity.
+          <p className="lead">Learn more about the music you listen to everyday based on musical attributes such as tempo, valence, energy, danceability, and popularity.
           </p>
           <p>Login with your Spotify account to get started</p>
           <Button onClick={this.handleLogin}>LOGIN WITH SPOTIFY</Button>
@@ -53,6 +53,7 @@ class LogIn extends Component {
         <h2>FAQ</h2>
         <p>Here are some answers to commonly asked questions</p>
         <ol>
+          <li><strong>How is my typical song calculated?</strong> It is calculated by taking the abosulte value of the difference of each song attribute and subtracting your average value for that attribute. Those values are then added up and the song with the smallest difference is declared the typical song.</li>
           <li><strong>How was this built?</strong> This was created using the <a href="https://developer.spotify.com/">Spotify</a> API. </li>
           <li><strong>Can I see your code for this?</strong> You can checkout it out on <a href="https://github.com/acastelan21/client-my-music-breakdown">Github</a>. If you have any suggestions feel free to open up an issue.</li>
           <li><strong>Any more features planned? </strong> Yes! I am looking into adding the ability to create playlists based on your average song attributes. </li>

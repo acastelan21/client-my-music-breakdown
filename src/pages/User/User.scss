@@ -1,6 +1,12 @@
 @import "../../variables.scss";
 
 .user-page-logged-in{
+    // .table {
+    //     tbody th {
+    //         font-size: .8em;
+    //     }
+    // }
+    //////////////dadfasdfa
     .grid {
         display: grid;
         grid-template-rows: 
@@ -25,18 +31,22 @@
         header,p{
 
             text-align: center;
+            
         }
         header {
             margin-top: 1em;
+            font-weight: 600;
         }
     }
     .my-song-item{
         
         p,header{
             text-align: center;
+            
         }
         header {
             margin-top: 1em;
+            font-weight: 600;
         }
         img {
             display: block;

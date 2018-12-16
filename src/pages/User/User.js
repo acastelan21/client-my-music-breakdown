@@ -6,7 +6,7 @@ import TracksTable from "../../components/TracksTable";
 import Stats from "../../components/Stats";
 import MySong from "../../components/MySong";
 import Glossary from "../../components/Glossary";
-
+import LoginPage from "../../pages/Login";
 import BlankProfileImage from "../../assets/images/blank-profile-image.png"
 
 const spotify = new SpotifyWebApi();
@@ -74,7 +74,7 @@ class User extends Component {
                     imageUrl: response.images[0].url,
                     dataLoaded: true
                 })
-                console.log("update state 1")
+                // console.log("update state 1"
                 // console.log(this.state)
             }
               else {
@@ -83,7 +83,7 @@ class User extends Component {
                     imageUrl: BlankProfileImage,
                     dataLoaded: true
                 })
-                console.log("update state 1")
+                // console.log("update state 1")
                 // console.log(this.state)
               }
           })
@@ -103,7 +103,7 @@ class User extends Component {
               this.setState({
                   topTracks: response.items})
                 // console.log("toptracks", response)
-                console.log("update state 2")
+                // console.log("update state 2")
           })
           .then(()=>{
             this.getTopTracksIds();
@@ -126,7 +126,7 @@ class User extends Component {
                  topTracksAttributes: response.audio_features
              })
             //  console.log(this.state.topTracksAttributes)
-            console.log("update state 3")
+            // console.log("update state 3")
          }).then(()=>{
              this.combineTrackInfo()
          })
@@ -151,10 +151,10 @@ class User extends Component {
          this.setState({
              combineTrackInfo : trackNames
          })
-         console.log("update state 4")
+        //  console.log("update state 4")
         //  console.log(this.state)
          this.getIdealSong();
-         console.log(this.state)
+        //  console.log(this.state)
       }
     //get the song that matches up closests to averages
       getIdealSong(){
@@ -407,11 +407,11 @@ class User extends Component {
     if (this.state.loggedIn === false){
         return (
             <div className="user-page-logged-off">
-            Sorry you are not logged in. Please Login!
+            <LoginPage/>
             </div>
         )
     }
-    else if (this.state.loggedIn === true && this.state.view === "glossary"){
+    if (this.state.loggedIn === true && this.state.view === "glossary"){
         return (
             <div className="user-page-logged-in glossary-view">
             <NavBar
@@ -499,7 +499,7 @@ class User extends Component {
                 <p>Danceability: {(idealSongData[0].song_attributes.danceability * 100).toFixed(0)}</p>
                 <p>Valence: {(idealSongData[0].song_attributes.valence * 100).toFixed(0)}</p>
                 <p>Acousticness: {(idealSongData[0].song_attributes.acousticness *100).toFixed(0)}</p>
-                <p>Popularity:{(idealSongData[0]. popularity)}</p>
+                <p>Popularity: {(idealSongData[0].popularity)}</p>
             </div>
             </React.Fragment>
             
@@ -539,7 +539,7 @@ class User extends Component {
     else {
         return (
             <div className="user-page-error">
-            Something went wrong
+            Something went wrong. Please go <a href="/">home page.</a>
             </div>
         )
     }
