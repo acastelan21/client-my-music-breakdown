@@ -15,7 +15,7 @@ class App extends Component {
           <React.Fragment>
             <Switch>
               <Route exact path="/" component={LoginPage}/>
-              <Route exact path="/user/:accesstoekn" component={UserPage}/>
+              <Route path="/user/" component={UserPage}/>
               <Route component={LoginPage}/>
             </Switch>
             <Footer/>
