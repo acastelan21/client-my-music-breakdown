@@ -32,7 +32,7 @@ class LogIn extends Component {
         <Row>
           <Col xs={{ size: 6, offset: 3 }}>
           <h2>Break your music down</h2>
-          <p>With <strong>My Music Breakdown</strong> you can look at your top 50 songs listen to from all time, last 6 months or last 4 weeks.
+          <p>With <strong>My Music Breakdown</strong> you can look at your top 50 songs listened to from all time, last 6 months or last 4 weeks.
           <br/>
           <br/>
           You will also see what your average song attributes are based on those top 50 songs from the time period selected. You will also see which song from those top 50 is the closests to your averages AKA "your typical song" for that time period. 
