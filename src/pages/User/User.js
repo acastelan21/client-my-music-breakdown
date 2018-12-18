@@ -51,7 +51,7 @@ class User extends Component {
         if (token) {
             spotify.setAccessToken(token);
         }
-    
+        console.log(token)
         
       }
       componentDidMount(){
@@ -60,7 +60,7 @@ class User extends Component {
           this.getUserTopTracks(this.state.view);
         //   console.log(this.state)
           
-         
+         console.log(this.state.tokens)
           
       }
       // make api call to get the user name + user image
