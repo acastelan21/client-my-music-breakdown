@@ -1,12 +1,7 @@
 @import "../../variables.scss";
 
 .user-page-logged-in{
-    // .table {
-    //     tbody th {
-    //         font-size: .8em;
-    //     }
-    // }
-    //////////////dadfasdfa
+   
     .grid {
         display: grid;
         grid-template-rows: 
@@ -14,11 +9,20 @@
         grid-template-columns: 
           repeat(2, 1fr);
         grid-column-gap: 10px;
-        width: 50%;
+        width: 60%;
         margin-right: auto;
         margin-left:  auto;
         margin-top: 2.5em;
+        @media screen and (max-width: 700px){
+            width: 100%;
+        }
 
+        @media screen and (max-width: 500px){
+            grid-template-rows: repeat(2,20em);
+            grid-template-columns: repeat(1,1fr);
+            grid-row-gap: 1em;
+            
+        }
       }
       
     .tracks-table{
@@ -26,7 +30,7 @@
         margin-top: 2.5em;
     }
     .stats-item{
-        // border: 2px solid $spotify-black;
+       
         border-radius: 10%;
         header,p{
 
@@ -50,17 +54,21 @@
         }
         img {
             display: block;
-            width: 50%;
-            // height: 10em;
+            max-width: 40%;
+            
             margin-right: auto;
             margin-left: auto;
+            @media screen and (min-width: 1333px){
+                width: 32.5%;
+                
+            }
         }
     }
 
     //card flip animation
 
     .flip-card{
-        // border: 2px solid $spotify-black;
+        
         background-color: transparent;
         perspective:1000px;
     }
@@ -169,23 +177,34 @@
 
  //views header
  .views-container{
-
+    
      header {
          width: 100%;
          
      }
       h2 {
         padding-left: .5rem;
-        margin: .5rem 2.5rem
+        margin: .5rem 2.5rem;
+        @media screen and (max-width: 675px){
+            padding-left: .2rem;
+        }
     }
    
-     ul li{
+     ul li {
         display: inline-block;
         position: relative;
         font-size: 1.5rem;
-        padding: .5rem
+        padding: .5rem;
     
-        
+        @media screen and (max-width:675px){
+            font-size: 1.1em;
+            padding: .25em;
+
+        }
+        @media screen and (max-width: 345px){
+            font-size: 1em;
+            padding: .1em;
+        }
     }
      ul li:hover:not(#view-text) {
         background: $spotify-green;
@@ -196,7 +215,11 @@
         // border-top: 5px solid $spotify-green;
         border-bottom: 5px solid $spotify-green;
         width: 100%;
-        
+        @media screen and (max-width: 675px){
+            text-align: center;
+            margin-left: 0px;
+            margin-inline-start: 0px !important;
+        }
     }
     #view-text{
         font-weight: 500;
@@ -211,6 +234,8 @@
  .VictoryContainer {
      position: absolute !important;
      top: 1.3em;
-     
+     @media screen and (max-width: 675px ) {
+         top: 1.65em;
+     }
  }
 }
