@@ -465,7 +465,13 @@ class User extends Component {
                     </ul>
                 </div>
             </header>
-
+            <div className="instructions">
+            
+            <i>On desktop hover over cards below with mouse to see more information.</i>
+            
+            <br/>
+            <i>On mobile tap on cards below to see more information.</i>
+            </div>
             <div className="grid">
                 <div onClick={this.flipCard} id="not-flipped" className="item stats-item flip-card">
                 <Stats
@@ -533,7 +539,7 @@ class User extends Component {
                 </div>
                 </div>
             </div>
-            
+            <div className="instructions"><i>To sort list just click on the name of attribute you want to sort by.</i></div>
             <TracksTable
             sortByAlpha = {this.sortByAlpha}
             sortByInt ={this.sortByInt}

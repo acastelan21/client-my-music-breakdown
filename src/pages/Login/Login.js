@@ -6,10 +6,10 @@ class LogIn extends Component {
   handleLogin = (event) => {
     event.preventDefault()
     // ++++++ production +++++++
-    window.location = "https://my-music-breakdown.herokuapp.com/login"
+    // window.location = "https://my-music-breakdown.herokuapp.com/login"
     
     // +++++ local host ++++++ 
-    // window.location = "http://localhost:8888/login"
+    window.location = "http://localhost:8888/login"
   
   }
   render() {
@@ -58,7 +58,7 @@ class LogIn extends Component {
         <ol>
           <li><strong>How is my typical song calculated?</strong> It is calculated by taking the abosulte value of the difference of each song attribute and subtracting your average value for that attribute. Those values are then added up and the song with the smallest difference is declared the typical song.</li>
           <li><strong>How was this built?</strong> This was created using the <a href="https://developer.spotify.com/">Spotify</a> API. </li>
-          <li><strong>Can I see your code for this?</strong> You can checkout it out on <a href="https://github.com/acastelan21/client-my-music-breakdown">Github</a>. If you have any suggestions feel free to open up an issue.</li>
+          <li><strong>Can I see your code for this?</strong> You can checkout it out on <a href="https://github.com/acastelan21/client-my-music-breakdown">Github</a>. If you have any suggestions on how to improve this site feel free to open up an issue.</li>
           <li><strong>Any more features planned? </strong> Yes! I am looking into adding the ability to create playlists based on your average song attributes. </li>
           <li><strong>I have a suggestion how can I contact you?</strong> You can send me an <a href="mailto:alvaro.castelan.21@gmail.com">email</a>, a message on <a href="https://www.linkedin.com/in/alvarocastelan/">Linkedin</a>, DM on <a href="https://twitter.com/ACastelan21">Twitter</a> or a message through my personal <a href="https://www.alvarocastelan.com/">website.</a></li>
         </ol>

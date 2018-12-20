@@ -12,7 +12,8 @@
         width: 60%;
         margin-right: auto;
         margin-left:  auto;
-        margin-top: 2.5em;
+        margin-top: 1em;
+        margin-bottom: 1em;
         @media screen and (max-width: 700px){
             width: 100%;
         }
@@ -27,8 +28,9 @@
       
     .tracks-table{
         @include centering(95%);
-        margin-top: 2.5em;
+        margin-top: .5em;
     }
+    
     .stats-item{
        
         border-radius: 10%;
@@ -85,7 +87,7 @@
     .flip-card:hover .flip-card-inner{
         transform: rotateY(180deg)
     }
-
+    //takes care of hover effect on mobile devices
     #flipped {
         transform: rotateY(180deg)
     }
@@ -233,6 +235,9 @@
         background: $spotify-green;
     }
 
+ }
+ .instructions {
+     text-align: center;
  }
  // victory chart 
  .VictoryContainer {
