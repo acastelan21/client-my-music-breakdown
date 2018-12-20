@@ -82,9 +82,11 @@
         transform-style: preserve-3d;
         
     }
-    .flip-card:hover .flip-card-inner{
+    .flip-card:hover .flip-card-inner, .flip-card:active .flip-card-inner{
         transform: rotateY(180deg)
     }
+
+
 
     .flip-card-front, .flip-card-back {
         position: absolute;
@@ -233,7 +235,7 @@
  // victory chart 
  .VictoryContainer {
      position: absolute !important;
-     top: 1.3em;
+     top: 1.75em;
      @media screen and (max-width: 675px ) {
          top: 1.65em;
      }
