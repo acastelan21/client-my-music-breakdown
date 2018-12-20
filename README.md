@@ -62,7 +62,7 @@ Alvaro Castelan | [LinkedIn](https://www.linkedin.com/in/alvarocastelan) | [Port
 
 
 # Acknowledgments 
-- Inspired by [Sort Your Music](http://sortyourmusic.playlistmachinery.com/) by [@plamere](https://twitter.com/plamere)
+Inspired by [Sort Your Music](http://sortyourmusic.playlistmachinery.com/) by [@plamere](https://twitter.com/plamere)
 
 
 
