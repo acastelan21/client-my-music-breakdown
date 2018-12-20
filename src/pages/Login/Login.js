@@ -6,10 +6,10 @@ class LogIn extends Component {
   handleLogin = (event) => {
     event.preventDefault()
     // ++++++ production +++++++
-    // window.location = "https://my-music-breakdown.herokuapp.com/login"
+    window.location = "https://my-music-breakdown.herokuapp.com/login"
     
     // +++++ local host ++++++ 
-    window.location = "http://localhost:8888/login"
+    // window.location = "http://localhost:8888/login"
   
   }
   render() {
