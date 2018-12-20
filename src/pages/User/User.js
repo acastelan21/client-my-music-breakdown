@@ -467,7 +467,7 @@ class User extends Component {
             </header>
 
             <div className="grid">
-                <div className="item stats-item flip-card">
+                <div onClick={this.flipCard} id="not-flipped" className="item stats-item flip-card">
                 <Stats
                     averageTempo={tempoAverage}
                     averageEnergy={energyAverage}
