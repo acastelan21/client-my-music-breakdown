@@ -481,7 +481,7 @@ class User extends Component {
                     />
                 </div>
                 <div className="item my-song-item flip-card">
-                <div className="flip-card-inner">
+                <div onClick="void(0)" className="flip-card-inner">
                 {idealSongData.length === 1
                 ? 
                 <React.Fragment>
