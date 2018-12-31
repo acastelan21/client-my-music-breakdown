@@ -7,6 +7,8 @@ import Stats from "../../components/Stats";
 import MySong from "../../components/MySong";
 import Glossary from "../../components/Glossary";
 import LoginPage from "../../pages/Login";
+import ViewsNav from "../../components/ViewsNav";
+import Loader from "../../components/Loader";
 import BlankProfileImage from "../../assets/images/blank-profile-image.png"
 
 const spotify = new SpotifyWebApi();
@@ -338,7 +340,7 @@ class User extends Component {
           this.setState({
               view : event.target.id
           })
-
+          
           if(event.target.id !== this.state.view){
              document.getElementById("short_term").style.background= "#f8f8f8"
              document.getElementById("medium_term").style.background="#f8f8f8"
@@ -346,6 +348,7 @@ class User extends Component {
              document.getElementById("glossary").style.background="#f8f8f8"
           }
           event.target.style.background = "#1DB954"
+       
           if (event.target.id === "glossary"){
               return;
           }
@@ -421,22 +424,16 @@ class User extends Component {
     if (this.state.loggedIn === true && this.state.view === "glossary"){
         return (
             <div className="user-page-logged-in glossary-view">
+
             <NavBar
              userImage = {this.state.imageUrl}
              userName = {this.state.userData.display_name}
             />
-            <header>
-                <div className="views-container">
-                    
-                    <ul id="views-toggles">
-                    <li id="view-text">View: </li>
-                    <li id="short_term" onClick={this.changeView}>Last 4 weeks</li>
-                    <li id="medium_term"onClick={this.changeView}>Last 6 months</li>
-                    <li id="long_term" onClick={this.changeView}>All time</li>
-                    <li id="glossary" onClick={this.changeView}>Glossary</li>
-                    </ul>
-                </div>
-            </header>
+
+            <ViewsNav 
+            changeView ={this.changeView} 
+            />
+            
             <Glossary/>
             
             </div>
@@ -452,19 +449,11 @@ class User extends Component {
             userImage = {this.state.imageUrl }
             userName = {this.state.userData.display_name || this.state.userData.id}
             />
+            
+            <ViewsNav 
+            changeView ={this.changeView} 
+            />
 
-            <header>
-                <div className="views-container">
-                    
-                    <ul id="views-toggles">
-                    <li id="view-text">View: </li>
-                    <li id="short_term" onClick={this.changeView}>Last 4 weeks</li>
-                    <li id="medium_term"onClick={this.changeView}>Last 6 months</li>
-                    <li id="long_term" onClick={this.changeView}>All time</li>
-                    <li id="glossary" onClick={this.changeView}>Glossary</li>
-                    </ul>
-                </div>
-            </header>
             <div className="instructions">
             
             <i>On desktop hover over cards below with mouse to see more information.</i>
@@ -472,6 +461,8 @@ class User extends Component {
             <br/>
             <i>On mobile tap on cards below to see more information.</i>
             </div>
+
+
             <div className="grid">
                 <div onClick={this.flipCard} id="not-flipped" className="item stats-item flip-card">
                 <Stats
@@ -502,35 +493,18 @@ class User extends Component {
                 title={this.state.idealSong[0].name} 
                 artist={this.state.idealSong[0].artists[0].name}
                 trackCover={this.state.idealSong[0].album.images[1].url}
+                typicalTempo = {idealSongData[0].song_attributes.tempo.toFixed(0)}       
+                typicalEnergy = {(idealSongData[0].song_attributes.energy * 100).toFixed(0)} 
+                typicalDanceability = {(idealSongData[0].song_attributes.danceability * 100).toFixed(0)}
+                typicalValence = {(idealSongData[0].song_attributes.valence * 100).toFixed(0)}
+                typicalAcousticness = {(idealSongData[0].song_attributes.acousticness *100).toFixed(0)}
+                typicalPopularity ={(idealSongData[0].popularity)}
                 />
-                <div className="flip-card-back">
                 
-                <header>My Typical Song</header>
-                <hr/>
-                <p>Tempo: {idealSongData[0].song_attributes.tempo.toFixed(0)}</p>
-                <p>Energy: {(idealSongData[0].song_attributes.energy * 100).toFixed(0)} </p>
-                <p>Danceability: {(idealSongData[0].song_attributes.danceability * 100).toFixed(0)}</p>
-                <p>Valence: {(idealSongData[0].song_attributes.valence * 100).toFixed(0)}</p>
-                <p>Acousticness: {(idealSongData[0].song_attributes.acousticness *100).toFixed(0)}</p>
-                <p>Popularity: {(idealSongData[0].popularity)}</p>
-            </div>
             </React.Fragment>
             
                 : 
-                <React.Fragment>
-                <div className="flip-card-front">
-                    <div id="preloader">
-                        <div id="loader"></div>
-                    </div>
-                </div>
-                
-                <div className="flip-card-back">
-                
-                    <div id="preloader">
-                        <div id="loader"></div>
-                    </div>
-                </div>
-            </React.Fragment>
+                <Loader/>
                 }
                 
                 
