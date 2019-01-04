@@ -61,7 +61,7 @@ class LogIn extends Component {
           <li><strong>Can I see your code for this?</strong> You can checkout it out on <a href="https://github.com/acastelan21/client-my-music-breakdown">Github</a>. If you have any suggestions on how to improve this site feel free to open up an issue.</li>
           <li><strong>Any more features planned? </strong> Yes! I am looking into adding the ability to create playlists based on your average song attributes. </li>
           <li><strong>I have a suggestion how can I contact you?</strong> You can send me an <a href="mailto:alvaro.castelan.21@gmail.com">email</a>, a message on <a href="https://www.linkedin.com/in/alvarocastelan/">Linkedin</a>, DM on <a href="https://twitter.com/ACastelan21">Twitter</a> or a message through my personal <a href="https://www.alvarocastelan.com/">website.</a></li>
-          <li><strong>Will you be able to see my tops songs?</strong> No, only you will be able to see what your top songs are.</li>
+          <li><strong>Will you be able to see my top songs?</strong> No, only you will be able to see what your top songs are.</li>
         </ol>
           </Col>
         </Row>
