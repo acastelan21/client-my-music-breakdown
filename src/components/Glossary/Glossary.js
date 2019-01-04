@@ -18,7 +18,7 @@ const Glossary = () => {
       </figure>
       <figure>
           <figcaption>Typical Song</figcaption>
-          The song in your top 50 for that time period that is the closests to your average song attributes. Calculated by taking the abosulte value of the difference of each song attribute and subtracting your average for that attribute. Those values are then added up and the song with the smallest number is declared the typical song. 
+          The song in your top 50 for that time period that is the closests to your average song attributes. Calculated by taking the absolute value of the difference of each song attribute and subtracting your average for that attribute. Those values are then added up and the song with the smallest number is declared the typical song. 
       </figure>
       <figure>
           <figcaption>Music Averages</figcaption>
