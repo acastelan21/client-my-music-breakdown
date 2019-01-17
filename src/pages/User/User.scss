@@ -29,6 +29,10 @@
     .tracks-table{
         @include centering(95%);
         margin-top: .5em;
+        .song-title:hover {
+            cursor: pointer;
+
+        }
     }
     
     .stats-item{
@@ -246,5 +250,16 @@
      @media screen and (max-width: 675px ) {
          top: 1.65em;
      }
+ }
+
+ .swal2-footer {
+    img {
+        width: 2.5em;
+        height: 2.5em;
+    }
+    text {
+        color: $spotify-green !important;
+
+    }
  }
 }

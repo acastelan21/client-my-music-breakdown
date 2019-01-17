@@ -17,7 +17,7 @@ You can find the live site @ [mymusicbreakdown.com](https://mymusicbreakdown.com
 - [Victory by Formidable Labs](https://formidable.com/open-source/victory/)
 - [Bootstrap](https://getbootstrap.com/) and [Reactstrap](https://reactstrap.github.io/)
 - [Sass](https://sass-lang.com/guide)
-
+- [SweetAlert2](https://sweetalert2.github.io/) and [SweetAlert2-React-Content](https://github.com/sweetalert2/sweetalert2-react-content)
 
 # How To Use
 This will give you the front end to the website. You can clone the backend to authenticate by going [here](https://github.com/acastelan21/server-my-music-breakdown).

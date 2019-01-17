@@ -10,7 +10,11 @@ import LoginPage from "../../pages/Login";
 import ViewsNav from "../../components/ViewsNav";
 import Loader from "../../components/Loader";
 import BlankProfileImage from "../../assets/images/blank-profile-image.png"
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content"
+import ChartModal from "../../components/ChartModal"
 
+const MySwal = withReactContent(Swal);
 const spotify = new SpotifyWebApi();
 
 
@@ -49,6 +53,7 @@ class User extends Component {
         this.sortByAlpha = this.sortByAlpha.bind(this)
         this.changeView = this.changeView.bind(this)
         this.flipCard = this.flipCard.bind(this)
+        this.getChartModal = this.getChartModal.bind(this)
 
         if (token) {
             spotify.setAccessToken(token);
@@ -65,6 +70,8 @@ class User extends Component {
         
           
       }
+
+
       // make api call to get the user name + user image
       getUser (){
           spotify.getMe()
@@ -358,6 +365,43 @@ class User extends Component {
           
           
       }
+      // trigger chart modal using sweet alert
+      getChartModal = (event) => {
+          console.log(event.target.id)
+          console.log(this.state.combineTrackInfo)
+        
+          let songData= []; 
+          for (let i = 0; i < this.state.combineTrackInfo.length; i ++){
+              if (this.state.combineTrackInfo[i].id === event.target.id){
+                 songData = this.state.combineTrackInfo[i]
+                
+              }
+          }
+          console.log(songData)
+          
+        MySwal.fire({
+            title: `${songData.name} 
+            ${songData.artists[0].name}`,
+            html: <ChartModal
+            songData={[
+                {x:0, y: songData.song_attributes.tempo },
+                {x:1, y: songData.song_attributes.energy * 100},
+                {x:2, y: songData.song_attributes.danceability * 100},
+                {x:3, y: songData.song_attributes.valence * 100},
+                {x:4, y: songData.song_attributes.acousticness *100 },
+                {x:5, y: songData.popularity}
+
+            ]}
+          />
+            
+            
+           
+            
+          })
+          
+      }
+      
+      // flip card to view other side
       flipCard = (event) => {
         event.preventDefault()
         if (event.target.id === "not-flipped"){
@@ -366,6 +410,7 @@ class User extends Component {
         else if (event.tagert.id === "flipped"){
             document.getElementById("flipped").id = "not-flipped" }
       }
+      // get hash params
       getHashParams() {
         let hashParams = {};
         let e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -402,7 +447,7 @@ class User extends Component {
       const tableRows = this.state.combineTrackInfo.map((tracks,i)=>(
           <tr key={tracks.id}>
               <th>{i+ 1}</th>
-              <th>{tracks.name}</th>
+              <th className="song-title" id={tracks.id} onClick={this.getChartModal}>{tracks.name}</th>
               <th>{tracks.artists[0].name}</th>
               <th>{(tracks.song_attributes.tempo).toFixed(0)}</th>
               <th>{(tracks.song_attributes.energy * 100).toFixed(0)}</th>
@@ -513,7 +558,13 @@ class User extends Component {
                 </div>
                 </div>
             </div>
-            <div className="instructions"><i>To sort list just click on the name of attribute you want to sort by.</i></div>
+            <div className="instructions">
+            
+            <i>
+                To sort list just click on the name of attribute you want to sort by.
+                <br/> 
+                Click/tap on name of song to see chart of song.
+            </i></div>
             <TracksTable
             sortByAlpha = {this.sortByAlpha}
             sortByInt ={this.sortByInt}
