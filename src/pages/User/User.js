@@ -17,6 +17,12 @@ import ChartModal from "../../components/ChartModal"
 const MySwal = withReactContent(Swal);
 const spotify = new SpotifyWebApi();
 
+import ReactGA from "react-ga";
+
+
+ReactGA.initialize(process.env.REACT_APP_GA_ID)
+ReactGA.pageview("user");
+
 
 class User extends Component {
     constructor(props){

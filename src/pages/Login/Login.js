@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import "./Login.scss";
 import {Navbar, NavbarBrand, Jumbotron, Container, Button, Row, Col} from "reactstrap";
+import ReactGA from "react-ga";
+
+
+ReactGA.initialize(process.env.REACT_APP_GA_ID)
+ReactGA.pageview("login");
 class LogIn extends Component {
   
   handleLogin = (event) => {
