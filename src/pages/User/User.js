@@ -125,6 +125,7 @@ class User extends Component {
       }
       // get the top track ids to make a call to API to get song attributes
       getTopTracksIds() {
+          if (this.state.topTracks.length !== 0){
           var tracks = this.state.topTracks
           const topTracksIds = tracks.map((track)=> {
             return track.id
@@ -139,7 +140,8 @@ class User extends Component {
          }).then(()=>{
              this.combineTrackInfo()
          })
-        
+          }
+          else {console.log("found nothing")}
 
 
       }
@@ -428,7 +430,10 @@ class User extends Component {
         let totalValence= 0;
         let totalAcoustic=0;
         let totalPopularity = 0;
+      
+    
         
+
         for (let i=0; i<this.state.topTracksAttributes.length; i ++){
            totalTempo += (this.state.topTracksAttributes[i].tempo);
            totalEnergy += (this.state.topTracksAttributes[i].energy * 100);
@@ -457,8 +462,8 @@ class User extends Component {
               <th> {(tracks.popularity)}</th>
           </tr>
       ))
+        
       
-    //   console.log(this.state)
     if (this.state.loggedIn === false){
         return (
             <div className="user-page-logged-off">
@@ -483,10 +488,14 @@ class User extends Component {
             
             </div>
         )}
-    else if (this.state.loggedIn === true){
+
+        
+    else if (this.state.loggedIn === true && this.state.topTracks.length !== 0){
         // console.log(this.state.userData)
+        
         const idealSongData = this.state.idealSong || []
         // console.log("song length", this.state.idealSong.length)
+        
         return (
             <div className="user-page-logged-in">
             
@@ -574,10 +583,31 @@ class User extends Component {
             </div>
           )
     }
+    else if(this.state.loggedIn === true && this.state.topTracks.length === 0){
+        return(
+            <div className="user-page-logged-in">
+            
+            <NavBar
+            userImage = {this.state.imageUrl }
+            userName = {this.state.userData.display_name || this.state.userData.id}
+            />
+            
+            <ViewsNav 
+            changeView ={this.changeView} 
+            />
+            <div className="no-data-message">
+            <p>Whoops! Looks like you have no data for this time period!</p>
+            <img src="https://tenor.com/view/where-whereat-gif-6060104.gif" alt="SpongeBob gif"/>
+            <p>Go to <a href="https://open.spotify.com/">Spotify</a> to listen to some tunes and then come back and see your music data!</p>
+            </div>
+            </div>
+        )
+    }
+   
     else {
         return (
             <div className="user-page-error">
-            Something went wrong. Please go <a href="/">home page.</a>
+            Something went wrong. Please go to <a href="/">home page.</a>
             </div>
         )
     }

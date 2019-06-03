@@ -262,4 +262,14 @@
 
     }
  }
+
+ .no-data-message{
+     img{
+     @include centering(50%)
+ }
+ p{
+     text-align: center;
+     font-size: 1.75em
+ }
+}
 }
