@@ -13,11 +13,11 @@ import BlankProfileImage from "../../assets/images/blank-profile-image.png"
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content"
 import ChartModal from "../../components/ChartModal"
-
+import ReactGA from "react-ga";
 const MySwal = withReactContent(Swal);
 const spotify = new SpotifyWebApi();
 
-import ReactGA from "react-ga";
+
 
 
 ReactGA.initialize(process.env.REACT_APP_GA_ID)
@@ -50,7 +50,8 @@ class User extends Component {
               acousticness: "",
               popularity: ""
 
-          }
+          },
+          dataAttempted : false
           
           
           
@@ -146,6 +147,11 @@ class User extends Component {
          }).then(()=>{
              this.combineTrackInfo()
          })
+          }
+          else if (this.state.topTracks.length === 0){
+        this.setState({
+            dataAttempted: true
+        })
           }
           else {console.log("found nothing")}
 
@@ -477,6 +483,7 @@ class User extends Component {
             </div>
         )
     }
+
     if (this.state.loggedIn === true && this.state.view === "glossary"){
         return (
             <div className="user-page-logged-in glossary-view">
@@ -589,7 +596,7 @@ class User extends Component {
             </div>
           )
     }
-    else if(this.state.loggedIn === true && this.state.topTracks.length === 0){
+    else if(this.state.loggedIn === true && this.state.topTracks.length === 0 && this.state.dataAttempted === true){
         return(
             <div className="user-page-logged-in">
             
@@ -610,12 +617,20 @@ class User extends Component {
         )
     }
    
+        else if(this.state.dataAttempted === false){
+            return (
+                <NavBar/>
+            )
+        }
+
     else {
         return (
             <div className="user-page-error">
             Something went wrong. Please go to <a href="/">home page.</a>
             </div>
         )
+
+       
     }
   }
 }
