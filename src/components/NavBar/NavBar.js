@@ -6,7 +6,8 @@ const NavBar = (props) => {
     <React.Fragment>
         <Navbar>
             <NavbarBrand href="/">My Music Breakdown</NavbarBrand>
-            <p>Hello, {props.userName}</p>
+            
+            <p>Hello, {props.userName}<a href="/login"> (Not You?)</a></p>
             <img src={props.userImage} alt="user"/>
         </Navbar>
     </React.Fragment>
